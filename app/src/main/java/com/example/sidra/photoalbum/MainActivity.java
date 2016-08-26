@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 public class MainActivity extends Activity {
 
     Integer[] mThumbIds = {
@@ -55,6 +57,7 @@ public class MainActivity extends Activity {
             ImageView imageView;
 
             if (convertView == null) {
+
                 imageView = new ImageView(mContext);
                 imageView.setLayoutParams(new GridView.LayoutParams(250, 250)); //size of photos
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -64,7 +67,15 @@ public class MainActivity extends Activity {
             {
                 imageView = (ImageView) convertView;
             }
-            imageView.setImageResource(mThumbIds[position]);
+            //imageView.setImageResource(mThumbIds[position]);
+
+            Picasso.with(mContext)
+                    .load(mThumbIds[position])
+                    //.placeholder(R.drawable.err)
+                    //.error(R.drawable.err)
+                    //.resize(50, 50)
+                    //.centerInside()
+                    .into(imageView);
             return imageView;
         }
     }
